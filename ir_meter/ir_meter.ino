@@ -6,7 +6,7 @@ void setup()
 	DDRB = 0b00000000;	  //	all inputs
 	PCICR |= 0b00000001;  //	turn on interrupts for PORTB
 	PCMSK0 |= 0b00000001; //	turn on interrupts for specific pin (B8)
-	sei();
+	sei();				  //	enable interrupts again
 	Serial.begin(9600);
 }
 
@@ -18,7 +18,7 @@ ISR(PCINT0_vect)
 {
 	if (!(PINB & 1)) //	falling edge
 	{
-		count++;
+		count++; //	count the interrupt
 		print();
 	}
 }
