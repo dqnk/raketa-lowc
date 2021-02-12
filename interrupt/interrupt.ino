@@ -8,7 +8,7 @@ void setup()
 {
 	cli();
 	DDRB = 0b00000000;
-	DDRD = 0b00000000;		//	pin 3 is input
+	DDRD = 0b00000000;	  //	pin 3 is input
 	PCICR |= 0b00000100;  //	turn on interrupts for PORTD
 	PCMSK2 |= 0b00001000; //	turn on interrupts for specific pin (pin 3)
 	DDRB = 0b00001000;	  //	pin 11 is output
