@@ -37,7 +37,6 @@ inline void print()
 	Serial.println(y);
 	Serial.print("z: ");
 	Serial.println(z);
-	Serial.println();
 }
 
 ISR(PCINT2_vect) //	Port D, PCINT16 - PCINT23
