@@ -1,4 +1,4 @@
-/*	This is just for debugging, testing and understanding arduino and its components 
+/*	This is just for testing and understanding arduino and its components 
 */
 #include <avr/interrupt.h>
 
