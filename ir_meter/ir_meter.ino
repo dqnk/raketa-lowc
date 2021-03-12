@@ -22,6 +22,3 @@ ISR(PCINT0_vect) // ISR for PORTB
 		Serial.println(count);
 	}
 }
-aoeu
-ou
-
