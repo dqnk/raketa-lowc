@@ -14,7 +14,7 @@ void loop()
 {
 }
 
-ISR(PCINT0_vect)		// ISR for PORTB
+ISR(PCINT0_vect)		//	ISR for PORTB
 {
 	if (!(PINB & 1))	//	falling edge on B8
 	{
