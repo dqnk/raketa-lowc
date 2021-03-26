@@ -23,10 +23,8 @@ void loop()
 {
 	print();
 	delay(1000);
-	PORTB = 0b00001000;	//	pin 11 set to high
 	print();
 	delay(1000);
-	PORTB = 0b00000000;	//	pin 11 set to low
 }
 
 inline void print()
