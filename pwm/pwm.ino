@@ -6,7 +6,7 @@
  * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
-*/
+ */
 
 //timer1 will interrupt at 1Hz
 
@@ -14,7 +14,7 @@ boolean toggle1 = 0;
 
 void setup()
 {
-  
+
 	DDRB = 0b00000001;	//	set pin 8 as output
 
 	cli();//stop interrupts
@@ -22,36 +22,50 @@ void setup()
 	//set timer1 interrupt at 1Hz
 	TCCR1A = 0;// set entire TCCR1A register to 0
 	TCCR1B = 0;// same for TCCR1B
-	TCNT1  = 0;//initialize counter value to 0
-	
+
+
+	//initialize counter value to 0
+	TCNT1  = 0;	
+
 	// set compare match register for 1hz increments
 	// OCR1A = 16*10^6 / desired period - 1 (result must be <65536)
-	OCR1A = 65535;  // turn on CTC mode
+
+	// 16e6/1024/1Hz - 1 
+	OCR1A = 15624;  
+
+	//	B
+	OCR1B = 1000;
+
+	// turn on CTC mode - timer counter resets to 0
 	TCCR1B |= (1 << WGM12);
-	// Set CS12 and CS10 bits for 1024 prescaler
+
+	// Set 1024 prescaler with CS12 and CS10 bits - TCCR1B = 0b00000101
 	TCCR1B |= (1 << CS12) | (1 << CS10);  
-	// enable timer compare interrupt
-	TIMSK1 |= (1 << OCIE1A);
-	
-	sei();//allow interrupts
-	  Serial.begin(9600);
+
+	// enable timer compare interrupt for timer TCNT1
+	TIMSK1 |= (1 << OCIE1B);
+
+	//allow interrupts
+	sei();
+	Serial.begin(9600);
 }
 
-ISR(TIMER1_COMPA_vect)
+ISR(TIMER1_COMPB_vect)
 {
 	if (toggle1)
 	{
 		PORTB = 0b00000000;
 		Serial.println("h");
-	    	toggle1 = 0;
+		toggle1 = 0;
 	}
 	else
 	{
 		PORTB = 0b00000001;
-	    	toggle1 = 1;
+		toggle1 = 1;
 	}
 }
 
-void loop(){
-  //do other things here
+void loop()
+{
+	//do other things here
 }
