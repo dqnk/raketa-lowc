@@ -8,10 +8,6 @@
  *
  */
 
-//timer1 will interrupt at 1Hz
-
-boolean toggle1 = 0;
-
 void setup()
 {
 
