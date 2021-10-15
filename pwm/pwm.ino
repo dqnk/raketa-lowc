@@ -52,17 +52,7 @@ void setup()
 
 ISR(TIMER1_COMPB_vect)
 {
-	if (toggle1)
-	{
-		PORTB = 0b00000000;
-		Serial.println("h");
-		toggle1 = 0;
-	}
-	else
-	{
-		PORTB = 0b00000001;
-		toggle1 = 1;
-	}
+	//	B interrupt
 }
 
 void loop()
